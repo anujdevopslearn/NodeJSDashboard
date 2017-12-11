@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+        <title>NodeJS Script Executor Online</title>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <head>
+                <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script-->
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+                <link rel="stylesheet" href="style.css">
+		<script type="text/javascript" language="javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+                <link rel="icon" href="images/icon.png" type="image/x-icon" />
+                <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+		<script type="text/javascript">
+		        $(document).ready(function() {
+            			//$("#submit").click(function() {
+                			$('#register-modal').submit(function (e) {
+                        		e.preventDefault();
+                        		$.ajax({
+                                		url: "/post",
+                                		type: "POST",
+                                		data: $(this).serialize(),
+                                		success: function (data) {
+                                        		$('textarea[name="data"]').val(data);
+                                		},
+                                		error: function (jXHR, textStatus, errorThrown) {
+                                        		alert(errorThrown);
+                                		}
+                        			});
+                			});
+        			//});
+   			});
+    		</script>
+
+        </head>
+        <body>
+        <div class="container-fluid">
+          <div class="container">
+            <h2 class="text-center" id="title">NodeJS Script Executor Online</h2>
+            <p class="text-center">Provide various arguments on screen and then click on button to execute the NodeJS Script and get response in return</p>
+	    <br/>
+               <div class="row">
+                 <div class="col-md-9">
+                    <form id="register-modal" method="POST" action="/post" class="form-horizontal">
+                       <div class="form-group" >
+          			<div class="col-md-3">
+           				<input type="text" class="form-control" id="Command" name="Command" placeholder="Command" style="width:300px;">
+          			</div>
+          			<!--div class="col-md-3">
+           				<input type="text" class="form-control" id="LastName" name="LastName" placeholder="Last Name">
+          			</div>
+          			<div class="col-md-3">
+           				<input type="text" class="form-control" id="UserStr" name="UserStr" placeholder="User String">
+          			</div>
+          			<div class="col-md-3">
+           				<input type="text" class="form-control" id="Company" name="Company" placeholder="Company">
+          			</div><br><span style="margin-bottom:20px"/>
+				<div class="col-md-3">
+                                        <input type="text" class="form-control" id="templateID" name="templateID" placeholder="Template ID">
+                                </div-->
+				<div class="col-md-3">
+				        <button type="submit" class="btn btn-primary" id="submit">Execute Script</button>
+				</div>
+				<br/><br/><br/><br/>
+				<div class="col-md-3">
+					<textarea name="data" style="height:300px;width:600px"></textarea>
+				</div>
+      			</div>
+                     </form>
+                 </div>
+              </div>
+        </div>
+      </div>
+      </body>
+</html>
