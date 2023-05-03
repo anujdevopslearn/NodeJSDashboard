@@ -1,0 +1,28 @@
+name: NodeJS CI workflow
+
+on:
+   workflow_dispatch:
+   push:
+jobs:
+  node_build:
+    strategy:
+      matrix:
+        version: [16, 18]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - uses: actions/setup-node@v3
+      with:
+        node-version: "${{ matrix.version }}"
+        registry-url: https://registry.npmjs.org/
+    - name: Cache Node Modules Dependencies
+      uses: actions/cache@v3
+      with:
+        path: '**/node_modules'
+        key: ${{ runner.os }}-cache
+    - name: NodeJS Build Process
+      run: |
+       npm install
+       npm run build --if-present
+       npm run test
